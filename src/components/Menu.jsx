@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MenuItem from './MenuItem';
 import { menuItems } from '../data';
 
-const Menu = ({ onAddToCart }) => {
+const Menu = () => {
     const categories = ['All', 'Coffee', 'Beverages', 'Ice Cream', 'Snacks'];
     const [activeCategory, setActiveCategory] = useState('All');
 
@@ -63,7 +63,7 @@ const Menu = ({ onAddToCart }) => {
                         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
                     >
                         {filteredItems.map((item, index) => (
-                            <MenuItem key={item.id} item={item} index={index} onAddToCart={onAddToCart} />
+                            <MenuItem key={item.id} item={item} index={index} />
                         ))}
                     </motion.div>
                 </AnimatePresence>

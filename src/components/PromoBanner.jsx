@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiGift } from 'react-icons/fi';
+import { FiX, FiInfo } from 'react-icons/fi';
 
 const PromoBanner = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -17,9 +17,9 @@ const PromoBanner = () => {
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-3 flex-1 justify-center">
-                        <FiGift className="text-2xl text-accent-peach animate-bounce" />
+                        <FiInfo className="text-2xl text-accent-mint" />
                         <p className="text-sm md:text-base font-semibold">
-                            🎉 Grand Opening Special! Get 20% OFF on all beverages this week!
+                            ☕ Visit us daily! Mon-Sun: 9:00 AM - 10:00 PM | Fresh coffee & snacks all day!
                         </p>
                     </div>
                     <button

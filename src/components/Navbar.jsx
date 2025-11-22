@@ -1,14 +1,25 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiCoffee } from 'react-icons/fi';
+import { FiMenu, FiX, FiCoffee, FiPhone } from 'react-icons/fi';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const menuItems = ['Home', 'Menu', 'Specials', 'Gallery', 'About', 'Reviews', 'Visit Us', 'Contact'];
+    const menuItems = ['Home', 'Our Menu', 'Specials', 'Gallery', 'About', 'Reviews', 'Visit Us', 'Contact'];
 
     const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId.toLowerCase().replace(' ', '-'));
+        const sectionMap = {
+            'Home': 'home',
+            'Our Menu': 'menu',
+            'Specials': 'specials',
+            'Gallery': 'gallery',
+            'About': 'about',
+            'Reviews': 'reviews',
+            'Visit Us': 'visit-us',
+            'Contact': 'contact'
+        };
+
+        const element = document.getElementById(sectionMap[sectionId]);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
             setIsOpen(false);
@@ -24,7 +35,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         className="flex items-center space-x-2 cursor-pointer"
-                        onClick={() => scrollToSection('home')}
+                        onClick={() => scrollToSection('Home')}
                     >
                         <FiCoffee className="text-3xl text-coffee-600" />
                         <span className="text-2xl font-heading font-bold text-coffee-800">
@@ -46,14 +57,16 @@ const Navbar = () => {
                                 {item}
                             </motion.button>
                         ))}
-                        <motion.button
+                        <motion.a
+                            href="tel:+919876543210"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.8 }}
-                            className="bg-coffee-600 text-white px-6 py-2 rounded-full hover:bg-coffee-700 transform hover:scale-105 transition-all shadow-lg"
+                            className="bg-coffee-600 text-white px-6 py-2 rounded-full hover:bg-coffee-700 transform hover:scale-105 transition-all shadow-lg flex items-center gap-2"
                         >
-                            Order Now
-                        </motion.button>
+                            <FiPhone />
+                            Call Us
+                        </motion.a>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -89,9 +102,13 @@ const Navbar = () => {
                                     {item}
                                 </motion.button>
                             ))}
-                            <button className="w-full bg-coffee-600 text-white px-6 py-3 rounded-full hover:bg-coffee-700 transition-all shadow-lg">
-                                Order Now
-                            </button>
+                            <a
+                                href="tel:+919876543210"
+                                className="w-full bg-coffee-600 text-white px-6 py-3 rounded-full hover:bg-coffee-700 transition-all shadow-lg flex items-center justify-center gap-2"
+                            >
+                                <FiPhone />
+                                Call Us
+                            </a>
                         </div>
                     </motion.div>
                 )}

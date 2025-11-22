@@ -1,10 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FiHeart } from 'react-icons/fi';
 
-const MenuItem = ({ item, index, onAddToCart }) => {
-    const [isFavorite, setIsFavorite] = useState(false);
-
+const MenuItem = ({ item, index }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -21,19 +18,8 @@ const MenuItem = ({ item, index, onAddToCart }) => {
                     className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
                 />
 
-                {/* Favorite Button */}
-                <button
-                    onClick={() => setIsFavorite(!isFavorite)}
-                    className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-all"
-                >
-                    <FiHeart
-                        className={`text-xl ${isFavorite ? 'fill-red-500 text-red-500' : 'text-coffee-600'
-                            } transition-colors`}
-                    />
-                </button>
-
                 {/* Tags */}
-                <div className="absolute top-3 left-3 flex gap-2">
+                <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
                     {item.tags.map((tag) => (
                         <span
                             key={tag}
@@ -43,7 +29,13 @@ const MenuItem = ({ item, index, onAddToCart }) => {
                                         ? 'bg-blue-500 text-white'
                                         : tag === 'New'
                                             ? 'bg-green-500 text-white'
-                                            : 'bg-accent-peach text-coffee-900'
+                                            : tag === 'Signature'
+                                                ? 'bg-purple-500 text-white'
+                                                : tag === 'Recommended'
+                                                    ? 'bg-yellow-500 text-coffee-900'
+                                                    : tag === 'Popular'
+                                                        ? 'bg-accent-peach text-coffee-900'
+                                                        : 'bg-accent-peach text-coffee-900'
                                 }`}
                         >
                             {tag}
@@ -62,14 +54,6 @@ const MenuItem = ({ item, index, onAddToCart }) => {
                 </p>
                 <div className="flex justify-between items-center">
                     <span className="text-2xl font-bold text-coffee-700">{item.price}</span>
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => onAddToCart(item)}
-                        className="bg-coffee-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-coffee-700 transition-colors"
-                    >
-                        Add to Cart
-                    </motion.button>
                 </div>
             </div>
         </motion.div>
